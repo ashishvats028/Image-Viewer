@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Header from '../../common/Header';
 import './Home.css'
+import dpPicture from '../../Assets/dpUrl.jpg';
 import {
     Avatar,
     Button,
@@ -27,7 +28,6 @@ class Home extends Component {
             userImages: [],
             filteredImages: [],
             username: properties.username, // Reading hard-coded username from config file.
-            url: properties.dpUrl, // Reading hard-coded profile picture URL from config file.
             loggedIn: sessionStorage.getItem("access-token") == null ? false : true
         }
     }
@@ -99,6 +99,7 @@ class Home extends Component {
 
     // For syncing a change in state of the entered search text.
     handleChange = (e) => {
+        e.persist();
         this.setState({'searchText': e.target.value}, () => {
             this.searchHandler(e);
         });
@@ -112,7 +113,7 @@ class Home extends Component {
             <div>
                 <div>
                     {/* Invoking Header component with Show Search and Show My Account flags. */}
-                    <Header {...this.props} loggedIn={true} dpUrl={this.state.url} showMyAccount={true} showSearch={true} handleChange={this.handleChange} />
+                    <Header {...this.props} loggedIn={true} dpUrl={dpPicture} showMyAccount={true} showSearch={true} handleChange={this.handleChange} />
                     </div>
 
                     {/* Posts Master Container. */}
@@ -125,7 +126,7 @@ class Home extends Component {
 
                                         {/* Card Header, Media and Content. */}
                                         <CardHeader
-                                            avatar={<Avatar variant="circle" src={this.state.url} className='avatar' />}
+                                            avatar={<Avatar variant="circle" src={dpPicture} className='avatar' />}
                                             title={details.username}
                                             subheader={new Date(details.timestamp).toLocaleString().replace(",","")} />
                                         <CardMedia style={{ height: 0, paddingTop: '80%', marginBottom: 10 }} image={details.url} />

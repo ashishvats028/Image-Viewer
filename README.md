@@ -1,3 +1,9 @@
+### Please refer src > Config.js file for changing accessToken if required.
+
+## Login Credentials 
+- Username: upgrad
+- Password: upgrad
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
